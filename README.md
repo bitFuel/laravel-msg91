@@ -1,29 +1,14 @@
 This is originally develeoped at Robin C Samuel | laravel-msg91. Modified to acheive my needs.
 
-# Laravel 5 Msg91 package
-[![Latest Stable Version](http://img.shields.io/badge/Latest%20Stable-1.0.1-blue.svg)](https://packagist.org/packages/robincsamuel/laravel-msg91)
-
-### About
-
-MSG91 is a bulk SMS service provider offers transactional & promotional bulk SMS solutions internationally. This package provide the text SMS & SendOTP functionalities.
-
-[Documentation - Text SMS](https://control.msg91.com/apidoc/textsms/send-sms.php)
-
-[Documentation - sendOTP](https://control.msg91.com/apidoc/sendotp/send-otp.php)
-
-### Registration
-
-[Sign up for Msg91](https://msg91.com/signup) and get the auth key from your account. You can find the `auth key` from `Dashboard > API` after signing in.
-
 ### Installation
 
 Installation via composer
 
-Add `robincsamuel/laravel-msg91` to your composer requirements:
+Add `bitfuel/laravel-msg91` to your composer requirements:
 
 ```php
 "require": {
-    "robincsamuel/laravel-msg91": "dev-master"
+    "bitfuel/laravel-msg91": "dev-master"
 }
 ```
 
@@ -32,13 +17,13 @@ Now run `composer update`
 Once the package is installed, open your `app/config/app.php` configuration file and locate the `providers` key. Add the following line to the end:
 
 ```php
-RobinCSamuel\LaravelMsg91\LaravelMsg91ServiceProvider::class
+BitFuel\LaravelMsg91\LaravelMsg91ServiceProvider::class
 ```
 
 Next, locate the `aliases` key and add the following line:
 
 ```php
-'LaravelMsg91' => RobinCSamuel\LaravelMsg91\Facades\LaravelMsg91::class,
+'LaravelMsg91' => BitFuel\LaravelMsg91\Facades\LaravelMsg91::class,
 ```
 
 Put the credentials & preferences in ENV with the keys `MSG91_KEY`, `MSG91_SENDER_ID`, `MSG91_ROUTE`, `MSG91_COUNTRY`.

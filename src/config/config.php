@@ -16,6 +16,9 @@ return array(
 	/* Country option, 0 for international, 91 for India, 1 for US (optional) */	
 	'country' => env('MSG91_COUNTRY', 0),
 
+	/* Template option, for send otp */	
+	'country' => env('MSG91_COUNTRY', 0),
+
 	/* Credit limit, if true message will be limted to 1 credit (optional) */
 	'limit_credit' => env('MSG91_LIMIT_CREDIT', false),
 

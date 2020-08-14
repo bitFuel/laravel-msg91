@@ -1,4 +1,4 @@
-<?php namespace RobinCSamuel\LaravelMsg91;
+<?php namespace BitFuel\LaravelMsg91;
 
 use GuzzleHttp\Client as GuzzleClient;
 
@@ -19,6 +19,15 @@ class LaravelMsg91 {
 	 *
 	 */	
 	protected $sender_id;
+
+
+	/**
+	 * Default from name/number
+	 *
+	 * @var string Default name or number that the SMS will be sent from
+	 *
+	 */	
+	protected $template_id;
 
 	/**
 	 * Default route
@@ -64,6 +73,7 @@ class LaravelMsg91 {
 		$this->route = config('laravel-msg91.route');
 		$this->limit_credit = config('laravel-msg91.limit_credit');
 		$this->country = config('laravel-msg91.country');
+		$this->template_id = config('laravel-msg91.template_id') ? config('laravel-msg91.template_id') : '';
 		$base_uri = config('laravel-msg91.base_uri') ? config('laravel-msg91.base_uri') : 'https://control.msg91.com/api/'; 
 		$this->guzzle = new GuzzleClient(["base_uri" => $base_uri ]);
 	}
@@ -150,9 +160,13 @@ class LaravelMsg91 {
 
 		$data['mobile'] = $recipient;
 		$data['otp'] = $otp;
-		$data['message'] = $message?:"Your otp is {$otp}";
+
+		if($message){
+			$data['message'] = $message?:"Your otp is {$otp}";
+		}
 
 		$data['authkey'] = $this->auth_key;
+		$data['template_id'] = $this->template_id;
 		$response = $this->guzzle->get('sendotp.php', ['query' =>$data]);	
 		return json_decode($response->getBody());
 	}
